@@ -1,10 +1,4 @@
-﻿'ITG.WinAPI.User32' `
-, 'ITG.WinAPI.UrlMon' `
-, 'ITG.RegExps' `
-, 'ITG.Utils' `
-| Import-Module;
-
-Set-Variable `
+﻿Set-Variable `
 	-Name 'APIRoot' `
 	-Option 'Constant' `
 	-Value 'https://pddimp.yandex.ru' `
@@ -281,7 +275,7 @@ function Invoke-API {
 	if ( -not $Token ) {
 		$Token = Get-Token $DomainName;
 	};
-    $BSTRToken = [System.Runtime.InteropServices.marshal]::SecureStringToBSTR( $SecureToken );
+    $BSTRToken = [System.Runtime.InteropServices.marshal]::SecureStringToBSTR( $Token );
     try {
         $PlainTextToken = [System.Runtime.InteropServices.marshal]::PtrToStringAuto( $BSTRToken );
     } finally {
